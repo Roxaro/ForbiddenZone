@@ -48,9 +48,10 @@ RunService.RenderStepped:Connect(function(deltaTime: number)
 	end
 
 	local mouseDelta = UserInputService:GetMouseDelta()
+	local viewportSize = camera.ViewportSize
 
 	-- Switched positions of X and Y to keep its consitent with final rotation
-	currentRotation += Vector2.new(mouseDelta.Y, mouseDelta.X)
+	currentRotation += Vector2.new(mouseDelta.Y * viewportSize.Y / viewportSize.X, mouseDelta.X)
 
 	-- Prevents player from flipping vertical rotation
 	currentRotation = Vector2.new(math.clamp(currentRotation.X, -45, 70), currentRotation.Y)
